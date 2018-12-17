@@ -62,6 +62,31 @@ jQuery(document).ready(function(e) {
 		
 		e.preventDefault(); //STOP default action
 	});
+	jQuery("#im").click(function (e)
+	{
+		
+		var import_data = jQuery('.theme-textareaImport').val();
+		var unpackArr = JSON.parse( import_data );
+		jQuery.each(unpackArr, function(index, value) 
+		{
+			jQuery("input[name='"+index+"']").val(value);
+		});
+		var postData = jQuery('#form-option').serializeArray();
+		jQuery.ajax({
+			type: "POST",
+			url: "options.php",
+			data: postData,
+			dataType: "json",
+			success: function(data, textStatus, jqXHR) {
+				jQuery('.save-options').fadeIn();
+				setTimeout(function () {jQuery('.save-options').fadeOut();}, 3000);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				//console.log(errorThrown);
+			}
+		});
+		
+	});
 		
 });	
 
