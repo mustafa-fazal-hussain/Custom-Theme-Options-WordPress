@@ -9,12 +9,12 @@ Developers can add a WordPress theme options page to any theme simply by modifyi
 
 1) Download this theme options folder and place it in your theme
 2) Link this theme option in your function.php file
-
+```
     /**
     * Theme Options 
     */
     require_once('Custom-Theme-Options-WordPress/theme-options.php');
-    
+ ```   
 Now you can see the options page in your wp-admin dashboard
 
 
@@ -26,8 +26,11 @@ In order to use this theme option on front end use this line on the top of your 
 //getting theme options
 $theme_option 	= get_option( 'theme_options' ); 
 ?>
+```
 
-/* Use this for getting Logo  */
+Use this for getting Logo
+
+```
 <?php if($theme_option['use-text-logo'] == true) { ?>
 <h1 class="siteName"><?php echo $theme_option['text-logo']; ?></h1>
 <?php } else if(!empty($theme_option['logo'])) { ?>
@@ -35,36 +38,48 @@ $theme_option 	= get_option( 'theme_options' );
 <?php } else { ?>
 <h1 class="siteName"><a href="<?php echo get_site_url(); ?>"><?php echo get_bloginfo('name'); ?></a></h1>
 <?php } ?>	
+```
 
+Use this for Favicon
 
-/* Use this for Favicon  */
-
+```
 <?php if(!empty($theme_option['favicon'])) { ?>
 <link rel="shortcut icon" href="<?php echo esc_url($theme_option['favicon']);?>">
 <?php } ?>		
+```
 
+Use this for Phone Number and Caption
 
-/* Use this for Phone Number and Caption  */
-
+```
 <?php if(!empty($theme_option['phone-number-caption']) &&  !empty($theme_option['phone-number'])) { ?>
 <div class="phNumber"><span class="phCaption"><?php echo $theme_option['phone-number-caption']; ?></span> <span><?php echo $theme_option['phone-number']; ?></span></div>
 <?php }  ?>   
+```
 
-/* Use this for Email and  Caption */
+Use this for Email and  Caption
 
+```
 <?php if(!empty($theme_option['email-caption']) &&  !empty($theme_option['email-address'])) { ?>
 <div><span class="emCaption"><?php echo $theme_option['email-caption']; ?></span> <a href="mailto:<?php echo $theme_option['email-address']; ?>"><?php echo $theme_option['email-address']; ?></a></div>
-<?php }  ?>   
+<?php }  ?>  
 
-/* Use this for checking is it sticky or not */
+```
 
+Use this for checking is it sticky or not
+
+```
 <?php if($theme_option['sticky-header'] == true) { ?>
 Do anything you want if the option is Yes
 <?php } ?>	
 
-/* Create a Shortcode for Social Icons  */
+```
 
-/* Place this code in your function.php file  */
+Create a Shortcode for Social Icons
+
+```
+
+Place this code in your function.php file
+
 <?php 
 
 function socialFunction($atts ) {
@@ -95,11 +110,15 @@ return $output;
 add_shortcode( 'display-social-links', 'socialFunction' );
 
 ?>
+```
 
-/* Use this for getting Social Icons */
+Use this for getting Social Icons
+
+```
 <div class="socialArea">
-<?php echo do_shortcode('[display-social-links]'); ?>
+	<?php echo do_shortcode('[display-social-links]'); ?>
 </div>
+
 ```
 
 This is an open source project so you are most welcome to contribute by fixing bug or implementing new features, creating issues for bugs you find, submitting new features request and most importantly providing your feedback.
